@@ -1,10 +1,12 @@
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+
 function App() {
   return (
-    <>
-      <div className="text-2xl text-indigo-600 font-semibold text-center">
-        this root parent components !
-      </div>
-    </>
+    <div className="flex justify-center">
+      <Header />
+      <HeroSection />
+    </div>
   );
 }
 
