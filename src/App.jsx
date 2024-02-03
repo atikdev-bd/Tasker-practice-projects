@@ -1,14 +1,18 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
+import TaskBoard from "./components/task/TaskBoard";
 
 function App() {
   return (
-    <div className="flex justify-center">
-      <Header />
-      <HeroSection />
-      <Footer />
-    </div>
+    <>
+      <div>
+        <Header />
+        <HeroSection />
+        <TaskBoard />
+        <Footer />
+      </div>
+    </>
   );
 }
 
