@@ -36,14 +36,36 @@ export default function TaskBoard() {
 
     SetShowModal(false);
   };
+
   const handleEditTask = (task) => {
     setTaskUpdate(task);
     SetShowModal(true);
   };
 
+  const handleDelete = (task) => {
+    console.log(task);
+
+    setTasks(tasks.filter((t) => t.id !== task.id));
+  };
+
+  const handleAllDeleteTasks = () => {
+    tasks.length = 0;
+    setTasks([...tasks]);
+  };
+
   const handleClose = () => {
     SetShowModal(false);
     setTaskUpdate(null);
+  };
+
+  const handleOnFavorite = (taskId) => {
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+
+    const newTasks = [...tasks];
+
+    newTasks[taskIndex].IsFavorite = !newTasks[taskIndex].IsFavorite;
+
+    setTasks(newTasks);
   };
 
   return (
@@ -61,8 +83,16 @@ export default function TaskBoard() {
         </div>
 
         <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
-          <TaskAction activeModal={() => SetShowModal(true)} />
-          <TaskList tasks={tasks} onEdit={handleEditTask} />
+          <TaskAction
+            activeModal={() => SetShowModal(true)}
+            deleteTasks={handleAllDeleteTasks}
+          />
+          <TaskList
+            onFav={handleOnFavorite}
+            tasks={tasks}
+            onEdit={handleEditTask}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
     </section>
