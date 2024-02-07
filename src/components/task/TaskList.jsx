@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { FaStar } from "react-icons/fa";
 
-export default function TaskList({ tasks }) {
+export default function TaskList({ tasks,onEdit }) {
   return (
     <div className="overflow-auto">
       <table className="table-fixed overflow-auto xl:w-full">
@@ -31,7 +31,7 @@ export default function TaskList({ tasks }) {
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task) => (
+          {tasks?.map((task) => (
             <tr
               key={task.id}
               className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2"
@@ -62,7 +62,9 @@ export default function TaskList({ tasks }) {
               <td>
                 <div className="flex items-center justify-center space-x-3">
                   <button className="text-red-500">Delete</button>
-                  <button className="text-blue-500">Edit</button>
+                  <button 
+                  onClick={()=>onEdit(task)}
+                  className="text-blue-500">Edit</button>
                 </div>
               </td>
             </tr>
