@@ -4,8 +4,6 @@ import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
-  console.log(onUpdate);
-
   const [addTask, setAddTask] = useState(
     onUpdate || {
       id: crypto.randomUUID(),
@@ -16,11 +14,12 @@ export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
       IsFavorite: false,
     }
   );
-  console.log(addTask);
 
   const [isAdd, setIsAdd] = useState(Object.is(onUpdate, null));
 
-  const handleSetTask = (evt) => {
+
+  // handle text input here to add task
+  const handleSetTaskInput = (evt) => {
     evt.preventDefault();
     const name = evt.target.name;
     let value = evt.target.value;
@@ -39,7 +38,7 @@ export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
     <>
       <div className="bg-black bg-opacity-70 h-full z-10 absolute top-0 left-0"></div>
       <form
-        onSubmit={handleSetTask}
+        onSubmit={handleSetTaskInput}
         className="mx-auto my-10 w-full max-w-[740px] rounded-xl border border-[#FEFBFB]/[36%] bg-[#191D26] p-9 max-md:px-4 lg:my-20 lg:p-11 z-10 absolute top-1/4 left-1/3"
       >
         <h2 className="mb-9 text-center text-2xl font-bold text-white lg:mb-11 lg:text-[28px]">
@@ -54,7 +53,7 @@ export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
               type="text"
               name="title"
               value={addTask.title}
-              onChange={handleSetTask}
+              onChange={handleSetTaskInput}
               id="title"
               required
             />
@@ -67,7 +66,7 @@ export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
               type="text"
               name="description"
               value={addTask.description}
-              onChange={handleSetTask}
+              onChange={handleSetTaskInput}
               id="description"
               required
             ></textarea>
@@ -81,7 +80,7 @@ export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
                 type="text"
                 name="tags"
                 value={addTask.tags}
-                onChange={handleSetTask}
+                onChange={handleSetTaskInput}
                 id="tags"
                 required
               />
@@ -93,7 +92,7 @@ export default function AddTaskModal({ onSave, onUpdate, handleClose }) {
                 className="block w-full cursor-pointer rounded-md bg-[#2D323F] px-3 py-2.5"
                 name="priority"
                 value={addTask.priority}
-                onChange={handleSetTask}
+                onChange={handleSetTaskInput}
                 id="priority"
                 required
               >
